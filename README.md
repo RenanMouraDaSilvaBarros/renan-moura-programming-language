@@ -33,7 +33,8 @@ O arquivo lex.l é compilado pelo compilador Lex gerando o arquivo lex.yy.c  de 
 
 ##### **Exemplo**:
 ```shell
- flex lex.l
- gcc lex.yy.c -lfl
- ./a.out
+    flex -i renan-moura.l
+    gcc lex.yy.c -o my-compiler -lfl
+    ./my-compiler
 ```
+
