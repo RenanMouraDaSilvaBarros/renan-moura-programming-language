@@ -9,7 +9,7 @@ COMMENTS[//]+
 NEWLINE"\n"
 WHITESPACE[ \t]
 
-  //Operadores
+/*Operadores*/
 SUN"+"
 MINUS"-"
 TIMES"*"
@@ -46,16 +46,19 @@ FALSE"false"
 
     
 %%
+    //tokens
 {WHITESPACE} {printf("ESPAÇOS EM BRANCOS: %s\n", yytext);}
 {COMMENTS} {printf("COMENTARIO: %s\n", yytext);}
 {NEWLINE} {printf("NOVA LINHA: %s\n", yytext);}
   
+  //Operadores
 {SUN} {printf("SOMA: %s\n", yytext); }
 {MINUS} {printf("SUBTRAÇÃO: %s\n", yytext); }
 {TIMES} {printf("MULTIPLICAÇÃO: %s\n", yytext); }
 {DIVIDE} {printf("DIVISÃO: %s\n", yytext); }
 {ASSIGNMENT} {printf("ATRIBUIÇÃO: %s\n", yytext); }
 
+  //Operadores lógicos
 {SMALLER} {printf("MENOR %s\n", yytext);}
 {BIGGER} {printf("MAIOR: %s\n", yytext);}
 {LESS_OR_EQUAL} {printf("MENOR OU IGUAL: %s\n", yytext);}
@@ -64,9 +67,22 @@ FALSE"false"
 {OR} {printf("OR: %s\n", yytext);}
 {NOT} {printf("NOT: %s\n", yytext);}
 
+  //Números
 {INT} {printf("INTEIRO: %s\n", yytext);}
 {FLOAT} {printf("PONTO FLUTUANTE: %s\n", yytext);}
 {INVALID_NUMBER} {printf("NUMERO INVALIDO: %s\n", yytext);}
+
+  //Estrutura de repetição
+{WHILE} {printf("enquanto: %s\n", yytext);}
+{DO_WHILE} {printf("fazerEnquanto: %s\n", yytext);}
+{FOR} {printf("para: %s\n", yytext);}
+
+  //String
+{CHARACTER} {printf("CARACTERE: %s\n", yytext);}
+{STRING} {printf("STRING: %s\n", yytext);}
+
+  //boolean
+{TRUE} {printf("TRUE: %s\n", yytext);}
 
 {CHARACTER} {printf("CARACTERE: %s\n", yytext);}
 {STRING} {printf("STRING: %s\n", yytext);}
