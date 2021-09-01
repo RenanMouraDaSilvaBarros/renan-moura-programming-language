@@ -1,9 +1,8 @@
 %{
 //definições em c
 %}
-    
+  
     //definições regulares
-MY_NAME"renan"
 COMMENTS[//]+
 
 NEWLINE"\n"
@@ -14,14 +13,14 @@ SUN"+"
 MINUS"-"
 TIMES"*"
 DIVIDE"/"
-ASSIGNMENT"=="
+ASSIGNMENT"="
 
 /*Operadores lógicos*/
 SMALLER"<"
 BIGGER">"
 LESS_OR_EQUAL"<="
 BIGGER_OR_EQUAL">="
-COMPARE"="
+COMPARE"=="
 AND"&"
 OR"~"
 NOT"!"
@@ -31,9 +30,12 @@ INT[0-9]+
 FLOAT[0-9]+.[0-9]+
 INVALID_NUMBER[0-9]*"."+[0-9]*
 
+/*Estrutura de condição*/
+IF"se"
+ELSE"se nao"
+
 /*Estrutura de repetição*/
-WHILE"While"
-DO_WHILE"While"
+WHILE"enquanto"
 FOR"para"
 
 /*String*/
@@ -44,12 +46,22 @@ STRING[a-zA-Z]+
 TRUE"true"
 FALSE"false"
 
-    
+START"inicio"
+END"final"
+
+WRITTEN"escreva" 
+READING"leia"
+
+VARIAVEL"renan_"{STRING}({STRING}|{INT}|"_")*
+
 %%
 {WHITESPACE} {printf("ESPAÇOS EM BRANCOS: %s\n", yytext);}
 {COMMENTS} {printf("COMENTARIO: %s\n", yytext);}
 {NEWLINE} {printf("NOVA LINHA: %s\n", yytext);}
-  
+
+{READING} {printf("LEITURA: %s\n", yytext); }
+{WRITTEN} {printf("ESCRITA: %s\n", yytext); }
+
 {SUN} {printf("SOMA: %s\n", yytext); }
 {MINUS} {printf("SUBTRAÇÃO: %s\n", yytext); }
 {TIMES} {printf("MULTIPLICAÇÃO: %s\n", yytext); }
@@ -60,6 +72,8 @@ FALSE"false"
 {BIGGER} {printf("MAIOR: %s\n", yytext);}
 {LESS_OR_EQUAL} {printf("MENOR OU IGUAL: %s\n", yytext);}
 {BIGGER_OR_EQUAL} {printf("MAIOR OU IGUAL: %s\n", yytext);}
+{COMPARE} {printf("COMPARAÇÃO: %s\n", yytext);}
+
 {AND} {printf("AND: %s\n", yytext);}
 {OR} {printf("OR: %s\n", yytext);}
 {NOT} {printf("NOT: %s\n", yytext);}
@@ -68,16 +82,19 @@ FALSE"false"
 {FLOAT} {printf("PONTO FLUTUANTE: %s\n", yytext);}
 {INVALID_NUMBER} {printf("NUMERO INVALIDO: %s\n", yytext);}
 
+{IF} {printf("IF : %s\n", yytext);}
+{ELSE} {printf("ELSE: %s\n", yytext);}
 
-{WHILE} {printf("enquanto: %s\n", yytext);}
-{DO_WHILE} {printf("fazerEnquanto: %s\n", yytext);}
-{FOR} {printf("para: %s\n", yytext);}
+{WHILE} {printf("ENQUANTO: %s\n", yytext);}
+{FOR} {printf("PARA: %s\n", yytext);}
 
-{CHARACTER} {printf("CARACTERE: %s\n", yytext);}
-{STRING} {printf("STRING: %s\n", yytext);}
+{TRUE} {printf("VERDADE: %s\n", yytext);}
+{FALSE} {printf("FALSO: %s\n", yytext);}
 
+{START} {printf("INICIO: %s\n", yytext);}
+{END} {printf("FINAL: %s\n", yytext);}
 
-{TRUE} {printf("TRUE: %s\n", yytext);}
+{VARIAVEL} {printf("VARIAVEL: %s\n", yytext);}
 
 {CHARACTER} {printf("CARACTERE: %s\n", yytext);}
 {STRING} {printf("STRING: %s\n", yytext);}
